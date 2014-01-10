@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootswatch.min.css">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/custom.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="{{ app.request.basepath }}/js/html5shiv.js"></script>
@@ -53,7 +54,7 @@
             <div class="form-group">
                 <div class="col-lg-3 control-label"></div>
                 <div class="col-lg-9">
-                    <a id="load">Lataa tiedot</a>
+                    <a class="function" id="load">Lataa tiedot</a>
                 </div>
             </div>
 
@@ -132,7 +133,7 @@
             <div class="form-group">
                 <div class="col-lg-3 control-label"></div>
                 <div class="col-lg-9">
-                    <a id="store">Tallenna tiedot</a>
+                    <a class="function" id="store">Tallenna tiedot</a>
                     <div id="saved-success"></div>
                 </div>
             </div>

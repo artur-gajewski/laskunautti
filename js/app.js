@@ -39,18 +39,4 @@ $(function() {
         $("#loaded-success").html("Tiedot ladattu!");
         $("#saved-success").html("");
     });
-
-    $( "#preview" ).bind( "click", function(e) {
-        e.preventDefault();
-        $("#billform").attr("action", "{{ path('preview') }}");
-        $("#billform").attr("target", "BLANK");
-        $("#billform").submit();
-    });
-
-    $( "#submit-form" ).bind( "click", function(e) {
-        e.preventDefault();
-        $("#billform").attr("action", "{{ path('homepage') }}");
-        $("#billform").attr("target", "");
-        $("#billform").submit();
-    });
 });

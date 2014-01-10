@@ -37,6 +37,7 @@ $app->post('/preview', function (Request $request) use ($app) {
             'payerDescription' => $request->get('payerDescription'),
             'payerDueDate' => $request->get('payerDueDate'),
             'payerTotal' => $request->get('payerTotal'),
+            'payerBillReference' => $request->get('payerBillReference'),
         )
     );
 })

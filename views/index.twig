@@ -55,13 +55,14 @@
                 <div class="col-lg-3 control-label"></div>
                 <div class="col-lg-9">
                     <a class="function" id="load">Lataa tiedot</a>
+                    <div id="loaded-success"></div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="senderName" class="col-lg-3 control-label">Nimi</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="senderName" name="senderName" placeholder="Lähettäjän etu- ja sukunimi">
+                    <input type="text" class="form-control sender-type" id="senderName" name="senderName" placeholder="Lähettäjän etu- ja sukunimi">
 
                 </div>
             </div>
@@ -69,7 +70,7 @@
             <div class="form-group">
                 <label for="senderAddress" class="col-lg-3 control-label">Osoite</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="senderAddress" name="senderAddress" placeholder="Lähettäjän katuosoite">
+                    <input type="text" class="form-control sender-type" id="senderAddress" name="senderAddress" placeholder="Lähettäjän katuosoite">
 
                 </div>
             </div>
@@ -77,7 +78,7 @@
             <div class="form-group">
                 <label for="senderZip" class="col-lg-3 control-label">Postinro</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="senderZip" name="senderZip" placeholder="Lähettäjän postinumero">
+                    <input type="text" class="form-control sender-type" id="senderZip" name="senderZip" placeholder="Lähettäjän postinumero">
 
                 </div>
             </div>
@@ -85,7 +86,7 @@
             <div class="form-group">
                 <label for="senderCity" class="col-lg-3 control-label">Kaupunki</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="senderCity" name="senderCity" placeholder="Lähettäjän kaupunki">
+                    <input type="text" class="form-control sender-type" id="senderCity" name="senderCity" placeholder="Lähettäjän kaupunki">
 
                 </div>
             </div>
@@ -93,10 +94,10 @@
             <div class="form-group">
                 <label for="senderEmail" class="col-lg-3 control-label">Sähköposti</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="senderEmail" name="senderEmail" placeholder="Lähettäjän sähköpostiosoite">
+                    <input type="text" class="form-control sender-type" id="senderEmail" name="senderEmail" placeholder="Lähettäjän sähköpostiosoite">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" id="senderSendEmail" checked> Lähetä kopio asiakkaalle lähetetystä ilmoituksesta
+                            <input type="checkbox" class="sender-type-cb" id="senderSendEmail" checked> Lähetä kopio asiakkaalle lähetetystä ilmoituksesta
                         </label>
                     </div>
                 </div>
@@ -105,28 +106,28 @@
             <div class="form-group">
                 <label for="senderWww" class="col-lg-3 control-label">WWW</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="senderWww" name="senderWww" placeholder="Lähettäjän kotisivujen osoite">
+                    <input type="text" class="form-control sender-type" id="senderWww" name="senderWww" placeholder="Lähettäjän kotisivujen osoite">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="senderYt" class="col-lg-3 control-label">Y-tunnus</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="senderYt" name="senderYt" placeholder="Lähettäjän Y-tunnus">
+                    <input type="text" class="form-control sender-type" id="senderYt" name="senderYt" placeholder="Lähettäjän Y-tunnus">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="senderIban" class="col-lg-3 control-label">IBAN</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="senderIban" name="senderIban" placeholder="Lähettäjän tilinumero IBAN-muodossa">
+                    <input type="text" class="form-control sender-type" id="senderIban" name="senderIban" placeholder="Lähettäjän tilinumero IBAN-muodossa">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="senderSwift" class="col-lg-3 control-label">SWIFT</label>
+                <label for="senderSwift" class="col-lg-3 control-label">SWIFT/BIC</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="senderSwift" name="senderSwift" placeholder="Lähettäjän pankkitunnus SWIFT-muodossa">
+                    <input type="text" class="form-control sender-type" id="senderSwift" name="senderSwift" placeholder="Lähettäjän pankkitunnus SWIFT/BIC-muodossa">
                 </div>
             </div>
 
@@ -296,39 +297,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{{ app.request.basepath }}/js/bootstrap.min.js"></script>
 <script src="{{ app.request.basepath }}/js/bootswatch.js"></script>
-
-<script>
-    $(function() {
-
-        $( "#store" ).bind( "click", function(e) {
-            e.preventDefault();
-            localStorage.senderName = $('#senderName').val();
-            $("#saved-success").html("Tiedot tallennettu!");
-        });
-
-        $( "#load" ).bind( "click", function(e) {
-            e.preventDefault();
-            $('#senderName').val(localStorage.senderName);
-        });
-
-        $( "#preview" ).bind( "click", function(e) {
-            e.preventDefault();
-            $("#billform").attr("action", "{{ path('preview') }}");
-            $("#billform").attr("target", "BLANK");
-            $("#billform").submit();
-        });
-
-        $( "#submit-form" ).bind( "click", function(e) {
-            e.preventDefault();
-            $("#billform").attr("action", "{{ path('homepage') }}");
-            $("#billform").attr("target", "");
-            $("#billform").submit();
-        });
-
-
-    });
-
-</script>
+<script src="{{ app.request.basepath }}/js/app.js"></script>
 
 </body>
 </html>

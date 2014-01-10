@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Helppo Lasku - Luo ja lähetä laskuja sekunneissa!</title>
+    <title>
+        {% if payerBillNumber is defined %}Lasku {{ payerBillNumber }} | {% endif %}LASKUNAUTTI | Luo ja lähetä laskuja sekunneissa!
+    </title>
     <link rel="stylesheet" href="../agfoto/uusi.css" type="text/css">
 </head>
 <body>
@@ -39,15 +41,60 @@
                                             <tr><td class="nb">BIC-koodi:</td><td class="nb">{{ senderSwift }}</td></tr>
                                         </table>
                                     </td>
-                                    <td colspan="3" rowspan="3" valign="top"><h2>Tilisiirto</h2>Maksu välitetään saajalle vain Suomessa Kotimaan maksuvälityksien yleisten ehtojen mukaisesti ja vain saajan ilmoittaman tilinumeron perusteella.</td>
+                                    <td colspan="3" rowspan="3" valign="top">
+                                        <h2>Tilisiirto</h2>
+                                        Maksu välitetään saajalle vain Suomessa Kotimaan maksuvälityksien yleisten ehtojen mukaisesti ja vain saajan ilmoittaman tilinumeron perusteella.
+                                        {% if payerBillNumber is defined %}
+                                        <br/><br/><br/><br/>
+                                        Lasku nro: {{ payerBillNumber }}
+                                        {% endif %}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td height="60" valign="top">Saaja</td>
-                                    <td valign="top">{{ senderName }}<br/>{{ senderAddress }}<br/>{{ senderZip }} {{ senderCity }}<br/><br/>Y-tunnus: {{ senderYt }}<br/>{{ senderWww }}<br/>{{ senderEmail }}</td>
+                                    <td valign="top">
+
+                                        {% if senderName is defined %}
+                                            {{ senderName }}<br/>
+                                        {% endif %}
+
+                                        {% if senderAddress is defined %}
+                                            {{ senderAddress }}<br/>
+                                        {% endif %}
+
+                                        {% if senderZip is defined %}
+                                            {{ senderZip }} {{ senderCity }}<br/>
+                                        {% endif %}
+
+                                        {% if senderYt is defined %}
+                                            <br/>Y-tunnus: {{ senderYt }}<br/>
+                                        {% endif %}
+
+                                        {% if senderWww is defined %}
+                                            {{ senderWww }}<br/>
+                                        {% endif %}
+
+                                        {% if senderEmail is defined %}
+                                            {{ senderEmail }}<br/>
+                                        {% endif %}
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td height="60" valign="top">Maksaja</td>
-                                    <td valign="top">{{ payerName }}<br/>{{ payerAddress }}<br/>{{ payerZip }} {{ payerCity }}</td>
+                                    <td valign="top">
+                                        {% if payerName is defined %}
+                                            {{ payerName }}<br/>
+                                        {% endif %}
+
+                                        {% if payerAddress is defined %}
+                                            {{ payerAddress }}<br/>
+                                        {% endif %}
+
+                                        {% if payerZip is defined %}
+                                            {{ payerZip }} {{ payerCity }}<br/>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td valign="top">Viitenumero</td>

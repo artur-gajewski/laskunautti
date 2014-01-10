@@ -36,13 +36,17 @@ $app->post('/preview', function (Request $request) use ($app) {
         'payerDescription',
         'payerDueDate',
         'payerTotal',
+        'payerBillNumber',
         'payerBillReference',
     );
 
     $responseValues = array();
 
     foreach($formFields as $field) {
-        $responseValues[$field] = $request->get($field);
+        if ($request->get($field) !== '') {
+            $responseValues[$field] = $request->get($field);
+        }
+
     }
 
     return $app['twig']->render('preview.twig', $responseValues);

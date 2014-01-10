@@ -65,4 +65,71 @@ $(function() {
         }
 
     });
+
+    // validate signup form on keyup and submit
+    // http://jqueryvalidation.org/documentation
+    $("#billform").validate({
+        rules: {
+            senderName: {
+                required: true,
+                minlength: 3
+            },
+            senderEmail: {
+                required: false,
+                email: true
+            },
+            senderIban: {
+                required: true
+            },
+            senderSwift: {
+                required: true
+            },
+            payerName: {
+                required: true
+            },
+            payerEmail: {
+                required: false,
+                email: true
+            },
+            payerBillNumber: {
+                required: true,
+                minlength: 3,
+                number: true
+            },
+            payerDescription: {
+                required: true
+            },
+            payerTotal: {
+                required: true,
+                number: true
+            }
+        },
+        messages: {
+            senderName: {
+                required: "Syötä lähettäjän nimi",
+                minlength: "Nimi on liian lyhyt"
+            },
+            senderIban: {
+                required: "Syötä lähettäjän IBAN tilinumero"
+            },
+            senderSwift: {
+                required: "Syötä lähettäjän pankin SWIFT/BIC tunnus"
+            },
+            payerName: {
+                required: "Syötä maksajan nimi"
+            },
+            payerBillNumber: {
+                required: "Syötä laskun numero",
+                minlength: "Numero on liian lyhyt",
+                number: "Vain numerot sallittu"
+            },
+            payerDescription: {
+                required: "Syötä kuvaus"
+            },
+            payerTotal: {
+                required: "Syötä laskun summa",
+                number: "Vain numerot ja piste sallittu"
+            }
+        }
+    });
 });

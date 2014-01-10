@@ -307,21 +307,25 @@
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{{ app.request.basepath }}/js/bootstrap.min.js"></script>
 <script src="{{ app.request.basepath }}/js/bootswatch.js"></script>
+<script src="{{ app.request.basepath }}/js/jquery.validate.min.js"></script>
 <script src="{{ app.request.basepath }}/js/app.js"></script>
 
 <script>
-    $( "#preview" ).bind( "click", function(e) {
-        e.preventDefault();
-        $("#billform").attr("action", "{{ path('preview') }}");
-        $("#billform").attr("target", "BLANK");
-        $("#billform").submit();
-    });
+    $().ready(function() {
 
-    $( "#submit-form" ).bind( "click", function(e) {
-        e.preventDefault();
-        $("#billform").attr("action", "{{ path('homepage') }}");
-        $("#billform").attr("target", "");
-        $("#billform").submit();
+        $( "#preview" ).bind( "click", function(e) {
+            e.preventDefault();
+            $("#billform").attr("action", "{{ path('preview') }}");
+            $("#billform").attr("target", "BLANK");
+            $("#billform").submit();
+        });
+
+        $( "#submit-form" ).bind( "click", function(e) {
+            e.preventDefault();
+            $("#billform").attr("action", "{{ path('homepage') }}");
+            $("#billform").attr("target", "");
+            $("#billform").submit();
+        });
     });
 </script>
 </body>

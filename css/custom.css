@@ -2,3 +2,12 @@
     background: transparent;
     cursor: pointer;
 }
+
+.error {
+    color: red;
+}
+
+.error:before
+{
+    content:"* ";
+}

@@ -17,29 +17,35 @@ $app->get('/', function () use ($app) {
 
 $app->post('/preview', function (Request $request) use ($app) {
 
-    return $app['twig']->render('preview.twig',
-        array(
-            'senderIban' => $request->get('senderIban'),
-            'senderSwift' => $request->get('senderSwift'),
-            'senderName' => $request->get('senderName'),
-            'senderEmail' => $request->get('senderEmail'),
-            'senderWww' => $request->get('senderWww'),
-            'senderAddress' => $request->get('senderAddress'),
-            'senderZip' => $request->get('senderZip'),
-            'senderCity' => $request->get('senderCity'),
-            'senderYt' => $request->get('senderYt'),
+    $formFields = array(
+        'senderIban',
+        'senderSwift',
+        'senderName',
+        'senderEmail',
+        'senderWww',
+        'senderAddress',
+        'senderZip',
+        'senderCity',
+        'senderYt',
 
-            'payerName' => $request->get('payerName'),
-            'payerAddress' => $request->get('payerAddress'),
-            'payerZip' => $request->get('payerZip'),
-            'payerCity' => $request->get('payerCity'),
+        'payerName',
+        'payerAddress',
+        'payerZip',
+        'payerCity',
 
-            'payerDescription' => $request->get('payerDescription'),
-            'payerDueDate' => $request->get('payerDueDate'),
-            'payerTotal' => $request->get('payerTotal'),
-            'payerBillReference' => $request->get('payerBillReference'),
-        )
+        'payerDescription',
+        'payerDueDate',
+        'payerTotal',
+        'payerBillReference',
     );
+
+    $responseValues = array();
+
+    foreach($formFields as $field) {
+        $responseValues[$field] = $request->get($field);
+    }
+
+    return $app['twig']->render('preview.twig', $responseValues);
 })
 ->bind('preview');
 

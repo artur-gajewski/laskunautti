@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Helppo Lasku - Luo ja lähetä laskuja sekunneissa!</title>
+    <link rel="stylesheet" href="../agfoto/uusi.css" type="text/css">
+</head>
+<body>
+    <style type="text/css">
+        td {
+            border: 1px solid black;
+
+        }
+        .nb {
+            border: 0px solid black;
+        }
+    </style>
+
+    <table width="100%" border="0" class="nb">
+        <tr>
+            <td align="center" class="nb">
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%" border="0">
+        <tr>
+            <td align="center" class="nb">
+                <table width="100%">
+                    <tr>
+                        <td align="left" class="sisalto nb">
+                            <h2>LASKU</h2>
+                            <table width="800" cellpadding="4" cellspacing="0" class="nb">
+                                <tr>
+                                    <td width="10%" height="60" valign="top">Saajan tilinumero</td>
+                                    <td width="40%" valign="top">
+                                        <table class="nb" width="100%">
+                                            <tr><td class="nb">IBAN:</td><td class="nb">{{ senderIban }}</td></tr>
+                                            <tr><td class="nb">BIC-koodi</td><td class="nb">{{ senderSwift }}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td colspan="3" rowspan="3" valign="top"><h2>Tilisiirto</h2>Maksu välitetään saajalle vain Suomessa Kotimaan maksuvälityksien yleisten ehtojen mukaisesti ja vain saajan ilmoittaman tilinumeron perusteella.</td>
+                                </tr>
+                                <tr>
+                                    <td height="60" valign="top">Saaja</td>
+                                    <td valign="top">{{ senderName }}<br/>{{ senderAddress }}<br/>{{ senderZip }} {{ senderCity }}<br/><br/>Y-tunnus: {{ senderYt }}<br/>{{ senderWww }}<br/>{{ senderEmail }}</td>
+                                </tr>
+                                <tr>
+                                    <td height="60" valign="top">Maksaja</td>
+                                    <td valign="top">{{ payerName }}<br/>{{ payerAddress }}<br/>{{ payerZip }} {{ payerCity }}</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">Viitenumero</td>
+                                    <td valign="top">1234558</td>
+                                    <td width="10%" valign="top">Eräpäivä</td>
+                                    <td valign="top">{{ payerDueDate }}</td>
+                                    <td valign="top">Euro {{ payerTotal }}</td>
+                                </tr>
+                            </table>
+
+                            <br/><br/><br/>
+                            <b>Laskuerittely</b>
+                            <br/><br/>
+
+                            <table width="800" border="0">
+                                <tr><td class="nb">{{ payerDescription }}</td><td class="nb">{{ payerTotal }} &euro;</td></tr>
+                                <tr><td class="nb">Ei arvonlisäverovelvollinen</td><td class="nb">&nbsp;</td></tr>
+                                <tr><td colspan="2" class="nb"><hr></td></tr>
+                                <tr><td class="nb"></td><td class="nb">{{ payerTotal }} &euro;</td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

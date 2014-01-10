@@ -208,7 +208,13 @@
             <div class="form-group">
                 <label for="payerDueDate" class="col-lg-3 control-label">Eräpäivä</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="payerDueDate" name="payerDueDate" placeholder="Eräpäivä muodossa pp.kk.yyyy">
+                    <select class="form-control" id="payerDueDate" name="payerDueDate">
+                        <option value="0">HETI</option>
+                        <option value="7">Viikon päästä</option>
+                        <option value="14">Kahden viikon päästä</option>
+                        <option value="21">Kolmen viikon päästä</option>
+                        <option value="28" selected>Kuukauden päästä</option>
+                    </select>
                 </div>
             </div>
 
@@ -273,10 +279,10 @@
         Sivuston ilmaisversiossa ei ole mahdollisuutta raportointiin tai seurantaan. Lähitulevaisuudessa on luvassa versio jossa yritykset voivat luoda itsellensä profiilin, toimipisteitä, automatisoituja laskujen luonteja sekä monia muita laskutuksen nopeuttamiseen ja helppouteen keskittyviä toimintoja.
     </p>
 
-    <h2>Maksaako palvelu mitään?</h2>
+    <h2>Mitä palvelu maksaa?</h2>
 
     <p class="lead">
-        Ei. Laskujen luontiin sekä niiden tulostamiseen ei ole liitetty mitään piilokustannuksia eikä kuluja. Palvelu on sinulle ja asiakkaillesi täysin ilmainen.
+        Ei mitään! Laskujen luontiin sekä niiden tulostamiseen ei liity mitään kustannuksia eikä kuluja. Palvelu on sinulle ja asiakkaillesi täysin ilmainen.
     </p>
 
 </div>

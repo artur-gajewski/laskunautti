@@ -1,7 +1,6 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
-use Silex\Provider\SessionServiceProvider;
 
 $app = require __DIR__.'/bootstrap.php';
 require __DIR__ . '/../config/db.php';
@@ -10,7 +9,11 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
 
-$app->register(new SessionServiceProvider());
+$app->register(new Silex\Provider\MonologServiceProvider(), array(
+    'monolog.logfile' => __DIR__.'/../logs/laskunautti.log',
+));
+
+$app->register(new Silex\Provider\SessionServiceProvider());
 
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
@@ -48,6 +51,7 @@ $formFields = array(
  * IndexAction
  */
 $app->get('/', function () use ($app) {
+
     return $app['twig']->render('index.twig');
 })
 ->bind('homepage');
@@ -56,6 +60,8 @@ $app->get('/', function () use ($app) {
  * PreviewAction
  */
 $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
+
+    $app['monolog']->addInfo('Preview loaded.');
 
     $responseValues = array();
 
@@ -66,7 +72,7 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
 
     }
 
-    return $app['twig']->render('bill.twig', $responseValues);
+    return $app['twig']->render('invoice.twig', $responseValues);
 })
 ->bind('preview');
 
@@ -95,7 +101,7 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
 
     $databaseValues['hash'] = $hash;
 
-    $success = $app['db']->insert('bills', $databaseValues);
+    $success = $app['db']->insert('invoice', $databaseValues);
 
     $id = $app['db']->lastInsertId();
 
@@ -108,6 +114,8 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
         )
     );
 
+    $app['monolog']->addInfo('Invoice saved: ' . $id . '/' . $hash);
+
     return $app->redirect('/', 301);
 })
 ->bind('save');
@@ -117,14 +125,16 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
  */
 $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($app, $formFields) {
 
-    $sql = "SELECT * FROM bills WHERE id = ? AND hash = ?";
+    $sql = "SELECT * FROM invoice WHERE id = ? AND hash = ?";
     $data = $app['db']->fetchAssoc($sql, array((int) $id, $hash));
 
     foreach($formFields as $field => $dbColumn) {
         $responseValues[$field] = $data[$dbColumn];
     }
 
-    return $app['twig']->render('bill.twig', $responseValues);
+    $app['monolog']->addInfo('Invoice viewed: ' . $id . '/' . $hash);
+
+    return $app['twig']->render('invoice.twig', $responseValues);
 })
 ->bind('view');
 

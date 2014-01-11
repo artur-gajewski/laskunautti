@@ -1,25 +1,21 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+use Silex\Provider\SessionServiceProvider;
 
 $app = require __DIR__.'/bootstrap.php';
-$dbConfigs = require __DIR__.'/../configs/db.php';
+require __DIR__ . '/../config/db.php.dist';
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
 
+$app->register(new SessionServiceProvider());
+
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'db.options' => array(
-        'driver'    => 'pdo_mysql',
-        'host'      => 'localhost',
-        'dbname'    => 'laskunautti',
-        'user'      => 'root',
-        'password'  => '',
-        'charset'   => 'utf8',
-    )
+    'db.options' => $dbConfigs
 ));
 
 /**
@@ -84,9 +80,7 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
     foreach($formFields as $field => $dbColumn) {
         if ($request->get($field) !== '') {
             $databaseValues[$dbColumn] = $request->get($field);
-            $responseValues[$field] = $request->get($field);
         }
-
     }
 
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -97,11 +91,20 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
 
     $databaseValues['hash'] = $hash;
 
-    $app['db']->insert('bills', $databaseValues);
+    $success = $app['db']->insert('bills', $databaseValues);
 
     $id = $app['db']->lastInsertId();
 
-    return $app->redirect('/lasku/' . $id . '/' . $hash);
+    $app['session']->getFlashBag()->add(
+        'info',
+        array(
+            'success' => $success,
+            'id'      => $id,
+            'hash'    => $hash,
+        )
+    );
+
+    return $app->redirect('/', 301);
 })
 ->bind('save');
 

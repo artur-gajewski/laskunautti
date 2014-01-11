@@ -89,6 +89,10 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
         $hash .= $characters[rand(0, strlen($characters) - 1)];
     }
 
+    $date = new DateTime();
+    $date->add(new DateInterval('P' . $request->get('billDueDate') . 'D'));
+    $databaseValues['bill_duedate'] = $date->format('Y-m-d');
+
     $databaseValues['hash'] = $hash;
 
     $success = $app['db']->insert('bills', $databaseValues);

@@ -4,7 +4,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Silex\Provider\SessionServiceProvider;
 
 $app = require __DIR__.'/bootstrap.php';
-require __DIR__ . '/../config/db.php.dist';
+require __DIR__ . '/../config/db.php';
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',

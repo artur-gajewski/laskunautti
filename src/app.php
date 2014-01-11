@@ -99,7 +99,9 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
 
     $app['db']->insert('bills', $databaseValues);
 
-    return $app['twig']->render('bill.twig', $responseValues);
+    $id = $app['db']->lastInsertId();
+
+    return $app->redirect('/lasku/' . $id . '/' . $hash);
 })
 ->bind('save');
 

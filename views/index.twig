@@ -195,35 +195,35 @@
             <legend>Laskun tiedot</legend>
 
             <div class="form-group">
-                <label for="payerBillNumber" class="col-lg-3 control-label">Laskun nro</label>
+                <label for="billNumber" class="col-lg-3 control-label">Laskun nro</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="payerBillNumber" name="payerBillNumber" placeholder="Laskun numero">
+                    <input type="text" class="form-control" id="billNumber" name="billNumber" placeholder="Laskun numero">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" id="payerCreateReference" checked> Luo viitenumero automaattisesti
+                            <input type="checkbox" id="createReference" checked> Luo viitenumero automaattisesti
                         </label>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="payerBillReference" class="col-lg-3 control-label">Viitenumero</label>
+                <label for="billReference" class="col-lg-3 control-label">Viitenumero</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="payerBillReference" name="payerBillReference" placeholder="Laskun viitenumero">
+                    <input type="text" class="form-control" id="billReference" name="billReference" placeholder="Laskun viitenumero">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="payerDescription" class="col-lg-3 control-label">Kuvaus</label>
+                <label for="billDescription" class="col-lg-3 control-label">Kuvaus</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="payerDescription" name="payerDescription" placeholder="Kuvaus palvelusta, tuotteesta, yms.">
+                    <input type="text" class="form-control" id="billDescription" name="billDescription" placeholder="Kuvaus palvelusta, tuotteesta, yms.">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="payerDueDate" class="col-lg-3 control-label">Eräpäivä</label>
+                <label for="billDueDate" class="col-lg-3 control-label">Eräpäivä</label>
                 <div class="col-lg-9">
-                    <select class="form-control" id="payerDueDate" name="payerDueDate">
+                    <select class="form-control" id="billDueDate" name="billDueDate">
                         <option value="0">HETI</option>
                         <option value="7">Viikon päästä</option>
                         <option value="14">Kahden viikon päästä</option>
@@ -234,17 +234,17 @@
             </div>
 
             <div class="form-group">
-                <label for="payerTotal" class="col-lg-3 control-label">Euro</label>
+                <label for="billTotal" class="col-lg-3 control-label">Euro</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="payerTotal" name="payerTotal" placeholder="Euromäärä">
+                    <input type="text" class="form-control" id="billTotal" name="billTotal" placeholder="Euromäärä">
 
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="payerVat" class="col-lg-3 control-label">ALV</label>
+                <label for="billVat" class="col-lg-3 control-label">ALV</label>
                 <div class="col-lg-9">
-                    <select class="form-control" id="payerVat" name="payerVat">
+                    <select class="form-control" id="billVat" name="billVat">
                         <option>0 %</option>
                         <option>10 %</option>
                         <option>14 %</option>
@@ -325,7 +325,7 @@
 
         $( "#submit-form" ).bind( "click", function(e) {
             e.preventDefault();
-            $("#billform").attr("action", "{{ path('homepage') }}");
+            $("#billform").attr("action", "{{ path('save') }}");
             $("#billform").attr("target", "");
             $("#billform").submit();
         });

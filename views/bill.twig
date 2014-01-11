@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>
-        {% if payerBillNumber is defined %}Lasku {{ payerBillNumber }} | {% endif %}LASKUNAUTTI | Luo ja lähetä laskuja sekunneissa!
+        {% if billNumber is defined %}Lasku {{ billNumber }} | {% endif %}LASKUNAUTTI | Luo ja lähetä laskuja sekunneissa!
     </title>
     <link rel="stylesheet" href="../agfoto/uusi.css" type="text/css">
 </head>
@@ -44,9 +44,9 @@
                                     <td colspan="3" rowspan="3" valign="top">
                                         <h2>Tilisiirto</h2>
                                         Maksu välitetään saajalle vain Suomessa Kotimaan maksuvälityksien yleisten ehtojen mukaisesti ja vain saajan ilmoittaman tilinumeron perusteella.
-                                        {% if payerBillNumber is defined %}
+                                        {% if billNumber is defined %}
                                         <br/><br/><br/><br/>
-                                        Lasku nro: {{ payerBillNumber }}
+                                        Lasku nro: {{ billNumber }}
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -98,10 +98,10 @@
                                 </tr>
                                 <tr>
                                     <td valign="top">Viitenumero</td>
-                                    <td valign="top">{{ payerBillReference }}</td>
+                                    <td valign="top">{{ billReference }}</td>
                                     <td width="10%" valign="top">Eräpäivä</td>
-                                    <td valign="top">{{ payerDueDate }}</td>
-                                    <td valign="top">Euro {{ payerTotal }}</td>
+                                    <td valign="top">{{ billDueDate }}</td>
+                                    <td valign="top">Euro {{ billTotal }}</td>
                                 </tr>
                             </table>
 
@@ -110,10 +110,10 @@
                             <br/><br/>
 
                             <table width="800" border="0">
-                                <tr><td class="nb">{{ payerDescription }}</td><td class="nb">{{ payerTotal }} &euro;</td></tr>
+                                <tr><td class="nb">{{ billDescription }}</td><td class="nb">{{ billTotal }} &euro;</td></tr>
                                 <tr><td class="nb">Ei arvonlisäverovelvollinen</td><td class="nb">&nbsp;</td></tr>
                                 <tr><td colspan="2" class="nb"><hr></td></tr>
-                                <tr><td class="nb"></td><td class="nb">{{ payerTotal }} &euro;</td></tr>
+                                <tr><td class="nb"></td><td class="nb">{{ billTotal }} &euro;</td></tr>
                             </table>
                         </td>
                     </tr>

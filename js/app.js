@@ -37,13 +37,13 @@ $(function() {
         $("#saved-success").html("");
     });
 
-    $("#payerBillNumber").change(function() {
-        var createRef = $( "#payerCreateReference" );
-        var number = $( "#payerBillNumber" ).val();
+    $("#billNumber").change(function() {
+        var createRef = $( "#createReference" );
+        var number = $( "#billNumber" ).val();
         var intRegex = /^\d+$/;
 
         if ( createRef.is(':checked') && intRegex.test(number) ) {
-            var number = $( "#payerBillNumber" ).val();
+            var number = $( "#billNumber" ).val();
             var ind1, ind2 = 0, sum = 0, mult = [ 7, 3, 1 ];
 
             for (ind1 = number.length; ind1--; ind2++) {
@@ -51,17 +51,17 @@ $(function() {
             }
 
             var ref = number += (1000 - sum) % 10;
-            $("#payerBillReference").val(ref);
+            $("#billReference").val(ref);
         }
     });
 
-    $("#payerBillReference").attr('readonly','readonly');
+    $("#billReference").attr('readonly','readonly');
 
-    $('#payerCreateReference').change(function() {
+    $('#createReference').change(function() {
         if($(this).is(":checked")) {
-            $("#payerBillReference").attr('readonly','readonly');
+            $("#billReference").attr('readonly','readonly');
         } else {
-            $("#payerBillReference").removeAttr('readonly');
+            $("#billReference").removeAttr('readonly');
         }
 
     });
@@ -91,15 +91,15 @@ $(function() {
                 required: false,
                 email: true
             },
-            payerBillNumber: {
+            billNumber: {
                 required: true,
                 minlength: 3,
                 number: true
             },
-            payerDescription: {
+            billDescription: {
                 required: true
             },
-            payerTotal: {
+            billTotal: {
                 required: true,
                 number: true
             }
@@ -118,15 +118,15 @@ $(function() {
             payerName: {
                 required: "Syötä maksajan nimi"
             },
-            payerBillNumber: {
+            billlNumber: {
                 required: "Syötä laskun numero",
                 minlength: "Numero on liian lyhyt",
                 number: "Vain numerot sallittu"
             },
-            payerDescription: {
+            billDescription: {
                 required: "Syötä kuvaus"
             },
-            payerTotal: {
+            billTotal: {
                 required: "Syötä laskun summa",
                 number: "Vain numerot ja piste sallittu"
             }

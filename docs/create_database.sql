@@ -1,5 +1,5 @@
 
-CREATE TABLE bills (
+CREATE TABLE invoice (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     hash VARCHAR(100) NOT NULL,
     sender_iban VARCHAR(100) NOT NULL,

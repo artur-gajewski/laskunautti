@@ -93,7 +93,6 @@ $(function() {
             },
             billNumber: {
                 required: true,
-                minlength: 3,
                 number: true
             },
             billDescription: {
@@ -118,9 +117,8 @@ $(function() {
             payerName: {
                 required: "Syötä maksajan nimi"
             },
-            billlNumber: {
+            billNumber: {
                 required: "Syötä laskun numero",
-                minlength: "Numero on liian lyhyt",
                 number: "Vain numerot sallittu"
             },
             billDescription: {

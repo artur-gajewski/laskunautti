@@ -14,7 +14,7 @@ $(function() {
             localStorage.setItem(field.name, field.value);
         });
 
-        $("#saved-success").html("Tiedot tallennettu!");
+        $("#saved-success").html("Tiedot tallennettu selaimen välimuistiin!");
         $("#loaded-success").html("");
     });
 
@@ -33,7 +33,7 @@ $(function() {
             $('#' + field.name).val(localStorage.getItem(field.name));
         });
 
-        $("#loaded-success").html("Tiedot ladattu!");
+        $("#loaded-success").html("Tiedot ladattu selaimen välimuistista!");
         $("#saved-success").html("");
     });
 

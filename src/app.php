@@ -47,6 +47,7 @@ $formFields = array(
     'billDescription' => 'bill_description',
     'billDueDate' => 'bill_duedate',
     'billTotal' => 'bill_total',
+    'billIncludesVat' => 'bill_includes_vat',
     'billVat' => 'bill_vat',
     'billNumber' => 'bill_number',
     'billReference' => 'bill_reference',
@@ -85,8 +86,13 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
     $vat = $responseValues['billVat'];
 
     if ($vat !== '0' && $vat !== '-1') {
-        $responseValues['billVatAmount'] = ($total / 100) * $vat;
-        $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
+        if (!$request->get('billIncludesVat')) {
+            $responseValues['billVatAmount'] = ($total / 100) * $vat;
+            $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
+        } else {
+            $responseValues['billVatAmount'] = $total - ($total - ($total / 100) * $vat);
+            $responseValues['billTotalWithVat'] = $total;
+        }
     } else {
         $responseValues['billVatAmount'] = 0;
         $responseValues['billTotalWithVat'] = $total;
@@ -103,13 +109,13 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
  */
 $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
 
-    $responseValues = array();
-
     foreach($formFields as $field => $dbColumn) {
         if ($request->get($field) !== '') {
             $databaseValues[$dbColumn] = $request->get($field);
         }
     }
+
+    $databaseValues['bill_includes_vat'] = $request->get('billIncludesVat') ? true : false;
 
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $hash = '';
@@ -162,8 +168,13 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
     $vat = $responseValues['billVat'];
 
     if ($vat !== '0' && $vat !== '-1') {
-        $responseValues['billVatAmount'] = ($total / 100) * $vat;
-        $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
+        if (!$responseValues['billIncludesVat']) {
+            $responseValues['billVatAmount'] = ($total / 100) * $vat;
+            $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
+        } else {
+            $responseValues['billVatAmount'] = $total - ($total - ($total / 100) * $vat);
+            $responseValues['billTotalWithVat'] = $total;
+        }
     } else {
         $responseValues['billVatAmount'] = 0;
         $responseValues['billTotalWithVat'] = $total;

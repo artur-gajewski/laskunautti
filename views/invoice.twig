@@ -101,7 +101,7 @@
                                             {{ payerZip }} {{ payerCity }}<br/>
                                         {% endif %}
 
-                                        {% if payerYt is defined %}
+                                        {% if payerYt is defined and payerYt is not null %}
                                             <br/>Y-tunnus: {{ payerYt }}<br/>
                                         {% endif %}
                                     </td>

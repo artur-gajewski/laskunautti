@@ -4,9 +4,9 @@
     <title>LASKUNAUTTI | Luo ja lähetä laskuja sekunneissa!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootstrap.css" media="screen">
-    <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootswatch.min.css">
-    <link rel="stylesheet" href="{{ app.request.basepath }}/css/custom.css">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootstrap.css?id={{ "now"|date('U') }}" media="screen">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootswatch.min.css?id={{ "now"|date('U') }}">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/custom.css?id={{ "now"|date('U') }}">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="{{ app.request.basepath }}/js/html5shiv.js"></script>
@@ -357,11 +357,11 @@
 
 </section>
 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="{{ app.request.basepath }}/js/bootstrap.min.js"></script>
-<script src="{{ app.request.basepath }}/js/bootswatch.js"></script>
-<script src="{{ app.request.basepath }}/js/jquery.validate.min.js"></script>
-<script src="{{ app.request.basepath }}/js/app.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js?id={{ "now"|date('U') }}"></script>
+<script src="{{ app.request.basepath }}/js/bootstrap.min.js?id={{ "now"|date('U') }}"></script>
+<script src="{{ app.request.basepath }}/js/bootswatch.js?id={{ "now"|date('U') }}"></script>
+<script src="{{ app.request.basepath }}/js/jquery.validate.min.js?id={{ "now"|date('U') }}"></script>
+<script src="{{ app.request.basepath }}/js/app.js?id={{ "now"|date('U') }}"></script>
 
 <script>
     $().ready(function() {

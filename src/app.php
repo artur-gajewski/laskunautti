@@ -161,7 +161,7 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
         $responseValues['billVatAmount'] = 0;
         $responseValues['billTotalWithVat'] = $total;
     }
-    
+
     $app['monolog']->addInfo('Invoice viewed: ' . $id . '/' . $hash);
 
     return $app['twig']->render('invoice.twig', $responseValues);

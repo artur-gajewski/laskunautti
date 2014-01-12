@@ -33,18 +33,25 @@
         <div class="col-lg-12">
             <h1>LASKUTUS JA LASKUJEN LÄHETYS MUUTAMASSA SEKUNNISSA.</h1>
         </div>
-
     </div>
 </div>
 
-
-<div class="row">
-    <div class="col-lg-12">
-        <p class="lead">Nyt voit luoda asiakkaillesi laskuja ja lähettää ne automaattisesti sähköpostitse ilman rekisteröitymistä ja täysin ilmaiseksi. Kokeile vaikka heti!</p>
+<div class="row features">
+    <div class="col-lg-4">
+        <h2>Helppo</h2>
+        <p class="lead">Laskujen luonti Laskunautilla on helppoa, koska vaativatkin tiedot luodaan puolestasi. Syötä vain tärkeimmät tiedot ja Laskunautti laskee arvonlisäveron, määräpäivän sekä muut tiedot puolestasi.</p>
+    </div>
+    <div class="col-lg-4">
+        <h2>Nopea</h2>
+        <p class="lead">Sinun ei tarvitse luoda käyttäjätunnusta vaan voit luoda laskun vaikka heti. Lähettäjän tiedot voit tallentaa selaimen välimuistiin ja ladata ne seuraavalla kerralla kun luot uutta laskua.</p>
+    </div>
+    <div class="col-lg-4">
+        <h2>Ilmainen</h2>
+        <p class="lead">Luit aivan oikein! Laskunautti on sinulle ja asiakkaillesi ilmainen ja voit niin monta laskua kuin haluat. Kokeile luoda lasku vaikka heti täyttämällä alla oleva kaavake!</p>
     </div>
 </div>
 
-<br/>
+<hr/>
 
 {% for message in app.session.getFlashBag.get('info') %}
     <div class="row success-section">
@@ -73,7 +80,7 @@
             </div>
 
             <div class="form-group">
-                <label for="senderName" class="col-lg-3 control-label">Nimi</label>
+                <label for="senderName" class="col-lg-3 control-label required">Nimi</label>
                 <div class="col-lg-9">
                     <input type="text" class="form-control sender-type" id="senderName" name="senderName" placeholder="Lähettäjän tai yrityksen nimi">
 
@@ -131,14 +138,14 @@
             </div>
 
             <div class="form-group">
-                <label for="senderIban" class="col-lg-3 control-label">IBAN</label>
+                <label for="senderIban" class="col-lg-3 control-label required">IBAN</label>
                 <div class="col-lg-9">
                     <input type="text" class="form-control sender-type" id="senderIban" name="senderIban" placeholder="Lähettäjän tilinumero IBAN-muodossa">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="senderSwift" class="col-lg-3 control-label">SWIFT/BIC</label>
+                <label for="senderSwift" class="col-lg-3 control-label required">SWIFT/BIC</label>
                 <div class="col-lg-9">
                     <input type="text" class="form-control sender-type" id="senderSwift" name="senderSwift" placeholder="Lähettäjän pankkitunnus SWIFT/BIC-muodossa">
                 </div>
@@ -158,7 +165,7 @@
             <legend>Maksajan tiedot</legend>
 
             <div class="form-group">
-                <label for="payerName" class="col-lg-3 control-label">Maksaja</label>
+                <label for="payerName" class="col-lg-3 control-label required">Maksaja</label>
                 <div class="col-lg-9">
                     <input type="text" class="form-control" id="payerName" name="payerName" placeholder="Maksajan nimi">
 
@@ -205,7 +212,7 @@
             <legend>Laskun tiedot</legend>
 
             <div class="form-group">
-                <label for="billNumber" class="col-lg-3 control-label">Laskun nro</label>
+                <label for="billNumber" class="col-lg-3 control-label required">Laskun nro</label>
                 <div class="col-lg-9">
                     <input type="text" class="form-control" id="billNumber" name="billNumber" placeholder="Laskun numero">
                     <div class="checkbox">
@@ -224,7 +231,7 @@
             </div>
 
             <div class="form-group">
-                <label for="billDescription" class="col-lg-3 control-label">Kuvaus</label>
+                <label for="billDescription" class="col-lg-3 control-label required">Kuvaus</label>
                 <div class="col-lg-9">
                     <input type="text" class="form-control" id="billDescription" name="billDescription" placeholder="Kuvaus palvelusta, tuotteesta, yms.">
                 </div>
@@ -244,7 +251,7 @@
             </div>
 
             <div class="form-group">
-                <label for="billTotal" class="col-lg-3 control-label">Euro</label>
+                <label for="billTotal" class="col-lg-3 control-label required">Euro</label>
                 <div class="col-lg-9">
                     <input type="text" class="form-control" id="billTotal" name="billTotal" placeholder="Euromäärä">
 
@@ -295,13 +302,13 @@
     <h2>Miten lähettäjän tiedot tallennetaan?</h2>
 
     <p class="lead">
-        Kun luot laskun, voit tallentaa omat tietosi "Lähettäjän tiedot" kaavakkeessa seuraavaa käyttöä varten, jolloin sinun ei tarvitse syöttää samoja tietoja uudelleen. Klikkaa <i><b>"Tallenna tiedot"</b></i>-linkkiä kun haluat tallentaa kenttien arvot seuraavaa kertaa varten. Klikkaamalla <i><b>"Lataa tiedot"</b></i>-linkkiä saat aikaisemmin tallentamasi tiedot kaavakkeeseen.
+        Kun luot laskun, voit tallentaa omat tietosi "Lähettäjän tiedot" kaavakkeessa seuraavaa käyttöä varten, jolloin sinun ei tarvitse syöttää samoja tietoja uudelleen. Klikkaa <i><b>"Tallenna tiedot"</b></i>-linkkiä kun haluat tallentaa kenttien arvot selaimen välimuistiin seuraavaa kertaa varten. Klikkaamalla <i><b>"Lataa tiedot"</b></i>-linkkiä saat aikaisemmin tallentamasi tiedot kaavakkeeseen. Tiedot säilyy kunnes tyhjennät selaimen välimuistin.
     </p>
 
     <h2>Tarjoatteko raportointia ja seurantaa?</h2>
 
     <p class="lead">
-        Sivuston ilmaisversiossa ei ole mahdollisuutta raportointiin tai seurantaan. Lähitulevaisuudessa on luvassa versio jossa yritykset voivat luoda itsellensä profiilin, toimipisteitä, automatisoituja laskujen luonteja sekä monia muita laskutuksen nopeuttamiseen ja helppouteen keskittyviä toimintoja.
+        Sivuston ilmaisversiossa ei ole mahdollisuutta raportointiin tai seurantaan. Työn alla on versio jossa yritykset voivat luoda itsellensä profiilin, toimipisteitä, automatisoituja laskujen luonteja ja lähetyksiä sekä monia muita laskutuksen nopeuttamiseen ja helppouteen keskittyviä toimintoja.
     </p>
 
     <h2>Mitä palvelu maksaa?</h2>
@@ -333,7 +340,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <p>Tämän palvelun toteuttaja ei vastaa kolmannen osapuolen maksusuorituksista tai laskujen maksamatta jättämisestä. Palvelu tarjotaan käyttäjille ilmaiseksi ja on käytettävissä omalla vastuulla.</p>
+                    <p>Tämän palvelun tarjoaja ei vastaa kolmannen osapuolen maksusuoritustietojen oikeellisuudesta tai laskujen maksamatta jättämisestä. Palvelu tarjotaan käyttäjille ilmaiseksi ja on käytettävissä omalla vastuulla.</p>
                 </div>
             </div>
 
@@ -350,7 +357,6 @@
 
 <script>
     $().ready(function() {
-
         $( "#preview" ).bind( "click", function(e) {
             e.preventDefault();
             $("#billform").attr("action", "{{ path('preview') }}");

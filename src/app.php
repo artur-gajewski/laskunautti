@@ -75,6 +75,10 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
 
     }
 
+    $date = new DateTime();
+    $date->add(new DateInterval('P' . $request->get('billDueDate') . 'D'));
+    $responseValues['billDueDate'] = $date->format('Y-m-d');
+
     return $app['twig']->render('invoice.twig', $responseValues);
 })
 ->bind('preview');

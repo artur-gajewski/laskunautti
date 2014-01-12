@@ -149,6 +149,10 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
     $sql = "SELECT * FROM invoice WHERE id = ? AND hash = ?";
     $data = $app['db']->fetchAssoc($sql, array((int) $id, $hash));
 
+    if (!$data) {
+        return $app['twig']->render('notfound.twig');
+    }
+
     foreach($formFields as $field => $dbColumn) {
         $responseValues[$field] = $data[$dbColumn];
     }

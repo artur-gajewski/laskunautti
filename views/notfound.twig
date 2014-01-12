@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LASKUNAUTTI | Luo ja lähetä laskuja sekunneissa!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootswatch.min.css">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/custom.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="{{ app.request.basepath }}/js/html5shiv.js"></script>
+    <script src="{{ app.request.basepath }}/js/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="icon" type="image/ico" href="{{ app.request.basepath }}/img/favicon.ico">
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="{{ path('homepage') }}" class="navbar-brand"><img height="40" src="{{ app.request.basepath }}/img/laskunautti.png"/></a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>VIRHE</h1>
+                <h2>Pyydettyä laskua ei löydy. Ole hyvä ja tarkasta osoite.</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

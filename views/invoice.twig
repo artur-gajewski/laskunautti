@@ -31,6 +31,11 @@
                     <tr>
                         <td align="left" class="sisalto nb">
                             <h2>LASKU</h2>
+
+                            {% if preview is defined %}
+                                <p class="preview-note">Tämä on laskun esikatselu. Laskua ei ole vielä tallennettu.</p>
+                            {% endif %}
+
                             <table width="800" cellpadding="4" cellspacing="0" class="nb">
                                 <tr>
                                     <td width="10%" height="60" valign="top">Saajan tilinumero</td>

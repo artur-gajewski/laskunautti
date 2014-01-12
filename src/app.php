@@ -91,6 +91,8 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
         $responseValues['billTotalWithVat'] = $total;
     }
 
+    $responseValues['preview'] = true;
+
     return $app['twig']->render('invoice.twig', $responseValues);
 })
 ->bind('preview');

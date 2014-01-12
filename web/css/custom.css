@@ -89,3 +89,9 @@ hr {
 #footer .contact {
     padding-bottom: 10px;
 }
+
+@media all and (max-width: 450px) {
+    h1 {
+        font-size: 2.7em !important;
+    }
+}

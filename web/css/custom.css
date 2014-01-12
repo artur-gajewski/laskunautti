@@ -98,6 +98,10 @@ hr {
     .page-header {
         margin-bottom: 0px;
     }
+
+    .footer-column {
+        margin-bottom: 10px;
+    }
 }
 
 @media all and (max-width: 450px) {

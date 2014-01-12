@@ -115,11 +115,11 @@
                 <label for="senderEmail" class="col-lg-3 control-label">Sähköposti</label>
                 <div class="col-lg-9">
                     <input type="text" class="form-control sender-type" id="senderEmail" name="senderEmail" placeholder="Lähettäjän sähköpostiosoite">
-                    <div class="checkbox">
+                    <!--div class="checkbox">
                         <label>
                             <input type="checkbox" class="sender-type-cb" id="senderSendEmail" checked> Lähetä kopio asiakkaalle lähetetystä ilmoituksesta
                         </label>
-                    </div>
+                    </div -->
                 </div>
             </div>
 
@@ -167,12 +167,12 @@
             <div class="form-group">
                 <label for="payerName" class="col-lg-3 control-label required">Maksaja</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="payerName" name="payerName" placeholder="Maksajan nimi">
+                    <input type="text" class="form-control" id="payerName" name="payerName" placeholder="Maksajan ati yrityksen nimi">
 
                 </div>
             </div>
 
-            <div class="form-group">
+            <!--div class="form-group">
                 <label for="payerEmail" class="col-lg-3 control-label">Sähköposti</label>
                 <div class="col-lg-9">
                     <input type="text" class="form-control" id="payerEmail" placeholder="Maksajan sähköpostiosoite">
@@ -182,7 +182,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
+            </div -->
 
             <div class="form-group">
                 <label for="payerAddress" class="col-lg-3 control-label">Osoite</label>
@@ -262,10 +262,11 @@
                 <label for="billVat" class="col-lg-3 control-label">ALV</label>
                 <div class="col-lg-9">
                     <select class="form-control" id="billVat" name="billVat">
-                        <option>0 %</option>
-                        <option>10 %</option>
-                        <option>14 %</option>
-                        <option selected>24 %</option>
+                        <option value="-1">Ei arvonlisäverovelvollinen</option>
+                        <option value="0">0 %</option>
+                        <option value="10">10 %</option>
+                        <option value="14">14 %</option>
+                        <option value="24"selected>24 %</option>
                     </select>
                     <div class="checkbox">
                         <label>

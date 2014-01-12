@@ -46,6 +46,7 @@ $formFields = array(
     'billDescription' => 'bill_description',
     'billDueDate' => 'bill_duedate',
     'billTotal' => 'bill_total',
+    'billVat' => 'bill_vat',
     'billNumber' => 'bill_number',
     'billReference' => 'bill_reference',
 );
@@ -78,6 +79,17 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
     $date = new DateTime();
     $date->add(new DateInterval('P' . $request->get('billDueDate') . 'D'));
     $responseValues['billDueDate'] = $date->format('Y-m-d');
+
+    $total = $responseValues['billTotal'];
+    $vat = $responseValues['billVat'];
+
+    if ($vat !== '0' && $vat !== '-1') {
+        $responseValues['billVatAmount'] = ($total / 100) * $vat;
+        $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
+    } else {
+        $responseValues['billVatAmount'] = 0;
+        $responseValues['billTotalWithVat'] = $total;
+    }
 
     return $app['twig']->render('invoice.twig', $responseValues);
 })
@@ -139,6 +151,17 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
         $responseValues[$field] = $data[$dbColumn];
     }
 
+    $total = $responseValues['billTotal'];
+    $vat = $responseValues['billVat'];
+
+    if ($vat !== '0' && $vat !== '-1') {
+        $responseValues['billVatAmount'] = ($total / 100) * $vat;
+        $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
+    } else {
+        $responseValues['billVatAmount'] = 0;
+        $responseValues['billTotalWithVat'] = $total;
+    }
+    
     $app['monolog']->addInfo('Invoice viewed: ' . $id . '/' . $hash);
 
     return $app['twig']->render('invoice.twig', $responseValues);

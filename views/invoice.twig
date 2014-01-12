@@ -102,7 +102,7 @@
                                     <td valign="top">{{ billReference }}</td>
                                     <td width="10%" valign="top">Eräpäivä</td>
                                     <td valign="top">{{ billDueDate|date("j.n.Y") }}</td>
-                                    <td valign="top">Euro {{ billTotal|number_format(2, '.', ',') }}</td>
+                                    <td valign="top">Euro {{ billTotalWithVat|number_format(2, '.', ',') }}</td>
                                 </tr>
                             </table>
 
@@ -112,9 +112,16 @@
 
                             <table width="800" border="0">
                                 <tr><td class="nb">{{ billDescription }}</td><td class="nb">{{ billTotal|number_format(2, '.', ',') }} &euro;</td></tr>
-                                <tr><td class="nb">Ei arvonlisäverovelvollinen</td><td class="nb">&nbsp;</td></tr>
-                                <tr><td colspan="2" class="nb"><hr></td></tr>
-                                <tr><td class="nb"></td><td class="nb">{{ billTotal|number_format(2, '.', ',') }} &euro;</td></tr>
+
+                                {% if billVat == '-1' %}
+                                    <tr><td class="nb">Ei arvonlisäverovelvollinen</td><td class="nb">&nbsp;</td></tr>
+                                    <tr><td colspan="2" class="nb"><hr></td></tr>
+                                    <tr><td class="nb"></td><td class="nb">{{ billTotal|number_format(2, '.', ',') }} &euro;</td></tr>
+                                {% else %}
+                                    <tr><td class="nb">Arvonlisävero {{ billVat }} %</td><td class="nb">{{ billVatAmount|number_format(2, '.', ',') }} &euro;</td></tr>
+                                    <tr><td colspan="2" class="nb"><hr></td></tr>
+                                    <tr><td class="nb"></td><td class="nb">{{ billTotalWithVat|number_format(2, '.', ',') }} &euro;</td></tr>
+                                {% endif %}
                             </table>
                         </td>
                     </tr>

@@ -18,6 +18,7 @@ CREATE TABLE invoice (
     bill_description VARCHAR(100) NOT NULL,
     bill_duedate DATETIME NOT NULL,
     bill_total FLOAT NOT NULL,
+    bill_vat VARCHAR(100) NOT NULL,
     bill_number VARCHAR(100) NOT NULL,
     bill_reference VARCHAR(100) NOT NULL
 );

@@ -42,6 +42,7 @@ $formFields = array(
     'payerAddress' => 'payer_address',
     'payerZip' => 'payer_zip',
     'payerCity' => 'payer_city',
+    'payerYt' => 'payer_yt',
 
     'billDescription' => 'bill_description',
     'billDueDate' => 'bill_duedate',

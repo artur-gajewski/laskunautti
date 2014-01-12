@@ -2,4 +2,4 @@
 composer.phar
 vendor/
 logs/
-config/db.php
+config/settings.yml

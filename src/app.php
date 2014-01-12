@@ -3,7 +3,10 @@
 use Symfony\Component\HttpFoundation\Request;
 
 $app = require __DIR__.'/bootstrap.php';
-require __DIR__ . '/../config/db.php';
+
+$app->register(new DerAlex\Silex\YamlConfigServiceProvider(
+    __DIR__ . '/../config/settings.yml'
+));
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
@@ -18,7 +21,7 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'db.options' => $dbConfigs
+    'db.options' => $app['config']['database']
 ));
 
 /**

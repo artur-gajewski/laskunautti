@@ -1,0 +1,17 @@
+/* TEAM */
+
+Creator: Artur "Losonautti" Gajewski
+Contact: info@arturgajewski.com, info@laskunautti.com
+Twitter: @GajewskiArtur
+From: Tuusula, Finland
+
+/* THANKS */
+
+Team Fraktio
+www.fraktio.fi
+
+/* SITE */
+
+Language: Finnish
+Doctype: HTML5
+Tech: Apache, PHP, Silex

@@ -13,7 +13,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => __DIR__.'/../logs/laskunautti.log',
+    'monolog.logfile' => __DIR__.'/../logs/laskunautti.' . date("Y-m-d") . '.log',
 ));
 
 $app->register(new Silex\Provider\SessionServiceProvider());

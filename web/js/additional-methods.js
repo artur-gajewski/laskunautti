@@ -61,18 +61,6 @@ jQuery.validator.addMethod("integer", function(value, element) {
 	return this.optional(element) || /^-?\d+$/.test(value);
 }, "A positive or negative non-decimal number please");
 
-jQuery.validator.addMethod("price", function(value, element) {
-    return this.optional(element) || /^\d+((.|,)\d{1,2})$/.test(value);
-}, "A valid price please");
-
-jQuery.validator.addMethod("bic", function(value, element) {
-    return this.optional(element) || /^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?/.test(value);
-}, "A valid SWIFT/BIC code please");
-
-jQuery.validator.addMethod("ytunnus", function(value, element) {
-    return this.optional(element) || /^\d{7}-\d{1}$/.test(value);
-}, "A valid VAT ID please");
-
 /**
  * Return true, if the value is a valid vehicle identification number (VIN).
  *
@@ -627,3 +615,23 @@ jQuery.validator.addMethod("extension", function(value, element, param) {
 	param = typeof param === "string" ? param.replace(/,/g, '|') : "png|jpe?g|gif";
 	return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
 }, jQuery.format("Please enter a value with a valid extension."));
+
+/*
+ * Application specific validators
+ */
+
+jQuery.validator.addMethod("price", function(value, element) {
+    return this.optional(element) || /^\d+((.|,)\d{1,2})$/.test(value);
+}, "A valid price please");
+
+jQuery.validator.addMethod("bic", function(value, element) {
+    return this.optional(element) || /^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?/.test(value);
+}, "A valid SWIFT/BIC code please");
+
+jQuery.validator.addMethod("ytunnus", function(value, element) {
+    return this.optional(element) || /^\d{7}-\d{1}$/.test(value);
+}, "A valid VAT ID please");
+
+jQuery.validator.addMethod("www", function(value, element) {
+    return this.optional(element) || /^((http|https):\/\/)?(([a-zA-Z0-9$\-_.+!*'(),;:&=]|%[0-9a-fA-F]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|localhost|([a-zA-Z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(:[0-9]+)?(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?(\#([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?)?$/.test(value);
+}, "A valid URL please");

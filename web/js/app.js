@@ -78,6 +78,9 @@ $(function() {
                 required: false,
                 email: true
             },
+            senderWww: {
+                www: true
+            },
             senderIban: {
                 required: true,
                 iban: true
@@ -113,6 +116,12 @@ $(function() {
             senderName: {
                 required: "Syötä lähettäjän nimi",
                 minlength: "Nimi on liian lyhyt"
+            },
+            senderEmail: {
+                email: "Syötä oikea sähköpostiosoite",
+            },
+            senderWww: {
+                www: "Syötä WWW-osoite oikeassa muodossa"
             },
             senderIban: {
                 required: "Syötä lähettäjän IBAN tilinumero",

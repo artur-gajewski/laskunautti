@@ -69,6 +69,10 @@ jQuery.validator.addMethod("bic", function(value, element) {
     return this.optional(element) || /^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?/.test(value);
 }, "A valid SWIFT/BIC code please");
 
+jQuery.validator.addMethod("ytunnus", function(value, element) {
+    return this.optional(element) || /^\d{7}-\d{1}$/.test(value);
+}, "A valid VAT ID please");
+
 /**
  * Return true, if the value is a valid vehicle identification number (VIN).
  *

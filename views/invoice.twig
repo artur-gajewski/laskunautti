@@ -36,6 +36,10 @@
                                 <p class="preview-note">Tämä on laskun esikatselu. Laskua ei ole vielä tallennettu.</p>
                             {% endif %}
 
+                            {% if sample is defined %}
+                                <p class="sample-note">Tämä on esimerkkilasku. Tätä laskua ei voi käyttää maksusuoritukseen.</p>
+                            {% endif %}
+
                             <table width="800" cellpadding="4" cellspacing="0" class="nb">
                                 <tr>
                                     <td width="10%" height="60" valign="top">Saajan tilinumero</td>

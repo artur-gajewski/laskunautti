@@ -241,7 +241,7 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
         $formFields['billTotalWithVat'] = $total;
     }
 
-    $formFields['preview'] = true;
+    $formFields['sample'] = true;
 
     return $app['twig']->render('invoice.twig', $formFields);
 })

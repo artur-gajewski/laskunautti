@@ -83,7 +83,8 @@ $(function() {
                 iban: true
             },
             senderSwift: {
-                required: true
+                required: true,
+                bic: true
             },
             payerName: {
                 required: true
@@ -114,7 +115,8 @@ $(function() {
                 iban: "Syötä IBAN tilinumero oikeassa muodossa"
             },
             senderSwift: {
-                required: "Syötä lähettäjän pankin SWIFT/BIC tunnus"
+                required: "Syötä lähettäjän pankin SWIFT/BIC tunnus",
+                bic: "Syötä pankin SWIFT/BIC tunnus oikeassa muodossa"
             },
             payerName: {
                 required: "Syötä maksajan nimi"

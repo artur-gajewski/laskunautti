@@ -65,6 +65,10 @@ jQuery.validator.addMethod("price", function(value, element) {
     return this.optional(element) || /^\d+((.|,)\d{1,2})$/.test(value);
 }, "A valid price please");
 
+jQuery.validator.addMethod("bic", function(value, element) {
+    return this.optional(element) || /^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?/.test(value);
+}, "A valid SWIFT/BIC code please");
+
 /**
  * Return true, if the value is a valid vehicle identification number (VIN).
  *

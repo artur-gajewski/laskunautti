@@ -101,7 +101,7 @@ $(function() {
             },
             billTotal: {
                 required: true,
-                number: true
+                price: true
             }
         },
         messages: {
@@ -128,7 +128,7 @@ $(function() {
             },
             billTotal: {
                 required: "Syötä laskun summa",
-                number: "Vain numerot ja piste sallittu"
+                price: "Syötä oikea hinta"
             }
         }
     });

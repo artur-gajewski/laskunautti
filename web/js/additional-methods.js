@@ -61,6 +61,10 @@ jQuery.validator.addMethod("integer", function(value, element) {
 	return this.optional(element) || /^-?\d+$/.test(value);
 }, "A positive or negative non-decimal number please");
 
+jQuery.validator.addMethod("price", function(value, element) {
+    return this.optional(element) || /^\d+((.|,)\d{1,2})$/.test(value);
+}, "A valid price please");
+
 /**
  * Return true, if the value is a valid vehicle identification number (VIN).
  *

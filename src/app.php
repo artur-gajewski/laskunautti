@@ -86,11 +86,11 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
     $vat = $responseValues['billVat'];
 
     if ($vat !== '0' && $vat !== '-1') {
-        if (!$request->get('billIncludesVat')) {
+        if (!$responseValues['billIncludesVat']) {
             $responseValues['billVatAmount'] = ($total / 100) * $vat;
             $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
         } else {
-            $responseValues['billVatAmount'] = $total - ($total * $vat) / ($total + $vat);
+            $responseValues['billVatAmount'] = ($total * $vat) / ($total + $vat);
             $responseValues['billTotal'] = $total - $responseValues['billVatAmount'];
             $responseValues['billTotalWithVat'] = $total;
         }
@@ -173,7 +173,7 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
             $responseValues['billVatAmount'] = ($total / 100) * $vat;
             $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
         } else {
-            $responseValues['billVatAmount'] = $total - ($total * $vat) / ($total + $vat);
+            $responseValues['billVatAmount'] = ($total * $vat) / ($total + $vat);
             $responseValues['billTotal'] = $total - $responseValues['billVatAmount'];
             $responseValues['billTotalWithVat'] = $total;
         }
@@ -187,6 +187,68 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
     return $app['twig']->render('invoice.twig', $responseValues);
 })
 ->bind('view');
+
+
+/**
+ * SampleAction
+ */
+$app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
+
+    $app['monolog']->addInfo('Sample loaded.');
+
+    $date = new DateTime();
+    $date->add(new DateInterval('P28D'));
+
+    $formFields = array(
+        'senderIban' => 'FI1234567891234567',
+        'senderSwift' => 'OPOPTUJO',
+        'senderName' => 'Yritys Maijanen',
+        'senderEmail' => 'maijanen@yritys.com',
+        'senderWww' => 'www.maijanenyritys.com',
+        'senderAddress' => 'Yrityskatu 1',
+        'senderZip' => '00390',
+        'senderCity' => 'Helsinki',
+        'senderYt' => '1234567-1',
+
+        'payerName' => 'Matti Meikäläinen',
+        'payerAddress' => 'Valtatie 123',
+        'payerZip' => '05400',
+        'payerCity' => 'Tuusula',
+
+        'billDescription' => 'Valokuvaus, muotokuvat',
+        'billDueDate' => $date->format('Y-m-d'),
+        'billTotal' => 125,
+        'billIncludesVat' => true,
+        'billVat' => 24,
+        'billNumber' => 123,
+        'billReference' => 1230,
+    );
+
+    $total = $formFields['billTotal'];
+    $vat = $formFields['billVat'];
+
+    if ($vat !== '0' && $vat !== '-1') {
+        if (!$formFields['billIncludesVat']) {
+            $formFields['billVatAmount'] = ($total / 100) * $vat;
+            $formFields['billTotalWithVat'] = $total + ($total / 100) * $vat;
+        } else {
+            $formFields['billVatAmount'] = ($total * $vat) / ($total + $vat);
+            $formFields['billTotal'] = $total - $formFields['billVatAmount'];
+            $formFields['billTotalWithVat'] = $total;
+        }
+    } else {
+        $formFields['billVatAmount'] = 0;
+        $formFields['billTotalWithVat'] = $total;
+    }
+
+    $formFields['preview'] = true;
+
+    return $app['twig']->render('invoice.twig', $formFields);
+})
+    ->bind('sample');
+
+
+
 
 /**
  * Finally, return the app.

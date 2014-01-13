@@ -1,0 +1,7 @@
+# robots.txt for Sites
+# Do not delete this file.
+
+User-agent: *
+Disallow: /lasku/*$
+Disallow: /esikatsele/
+Disallow: /tallenna/

@@ -79,7 +79,8 @@ $(function() {
                 email: true
             },
             senderIban: {
-                required: true
+                required: true,
+                iban: true
             },
             senderSwift: {
                 required: true
@@ -109,7 +110,8 @@ $(function() {
                 minlength: "Nimi on liian lyhyt"
             },
             senderIban: {
-                required: "Syötä lähettäjän IBAN tilinumero"
+                required: "Syötä lähettäjän IBAN tilinumero",
+                iban: "Syötä IBAN tilinumero oikeassa muodossa"
             },
             senderSwift: {
                 required: "Syötä lähettäjän pankin SWIFT/BIC tunnus"

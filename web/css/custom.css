@@ -8,6 +8,10 @@ hr {
     margin-bottom: 45px;
 }
 
+.container {
+    width: 90%;
+}
+
 .function {
     background: transparent;
     cursor: pointer;

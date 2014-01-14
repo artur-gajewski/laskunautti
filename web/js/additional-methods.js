@@ -621,7 +621,7 @@ jQuery.validator.addMethod("extension", function(value, element, param) {
  */
 
 jQuery.validator.addMethod("price", function(value, element) {
-    return this.optional(element) || /^\d+((.|,)\d{1,2})$/.test(value);
+    return this.optional(element) || /^\d+(((.|,)\d{1,2})?)$/.test(value);
 }, "A valid price please");
 
 jQuery.validator.addMethod("bic", function(value, element) {

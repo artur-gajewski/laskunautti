@@ -36,7 +36,7 @@ logfile="../logs/laskunautti.$yesterday.log"
 
 echo ""
 echo "#"
-echo "# Laskunautti activity report for yesterday (yesterday)"
+echo "# Laskunautti activity report for yesterday ($yesterday)"
 echo "#"
 echo ""
 

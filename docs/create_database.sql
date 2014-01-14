@@ -28,3 +28,5 @@ CREATE TABLE IF NOT EXISTS invoice (
 ALTER TABLE invoice ADD COLUMN payer_yt VARCHAR(100);
 
 ALTER TABLE invoice ADD COLUMN bill_includes_vat BOOLEAN;
+
+ALTER TABLE invoice ADD COLUMN bill_created DATETIME NOT NULL;

@@ -54,7 +54,11 @@
                                         Maksu välitetään saajalle vain Suomessa Kotimaan maksuvälityksien yleisten ehtojen mukaisesti ja vain saajan ilmoittaman tilinumeron perusteella.
                                         {% if billNumber is defined %}
                                         <br/><br/><br/><br/>
-                                        Lasku nro: {{ billNumber }}
+                                        Laskun nro: {{ billNumber }}
+                                        {% endif %}
+                                        {% if billCreatedDate is defined and billCreatedDate != '0000-00-00 00:00:00' %}
+                                            <br/>
+                                            Päiväys: {{ billCreatedDate|date("j.n.Y") }}
                                         {% endif %}
                                     </td>
                                 </tr>

@@ -46,6 +46,7 @@ $formFields = array(
 
     'billDescription' => 'bill_description',
     'billDueDate' => 'bill_duedate',
+    'billCreatedDate' => 'bill_created',
     'billTotal' => 'bill_total',
     'billIncludesVat' => 'bill_includes_vat',
     'billVat' => 'bill_vat',
@@ -79,6 +80,8 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
     }
 
     $date = new DateTime();
+    $responseValues['billCreatedDate'] = $date->format('Y-m-d');
+
     $date->add(new DateInterval('P' . $request->get('billDueDate') . 'D'));
     $responseValues['billDueDate'] = $date->format('Y-m-d');
 
@@ -125,6 +128,8 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
     }
 
     $date = new DateTime();
+    $databaseValues['bill_created'] = $date->format('Y-m-d');
+
     $date->add(new DateInterval('P' . $request->get('billDueDate') . 'D'));
     $databaseValues['bill_duedate'] = $date->format('Y-m-d');
 
@@ -196,6 +201,7 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
 
     $app['monolog']->addInfo('Sample loaded.');
 
+    $now = new DateTime();
     $date = new DateTime();
     $date->add(new DateInterval('P28D'));
 
@@ -217,6 +223,7 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
 
         'billDescription' => 'Valokuvaus, muotokuvat',
         'billDueDate' => $date->format('Y-m-d'),
+        'billCreatedDate' => $now->format('Y-m-d'),
         'billTotal' => 125,
         'billIncludesVat' => true,
         'billVat' => 24,

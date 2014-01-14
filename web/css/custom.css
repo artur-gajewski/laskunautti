@@ -46,6 +46,10 @@ hr {
     text-decoration: none;
 }
 
+.note-link {
+    text-decoration: none !important;
+}
+
 .success-section {
     margin-bottom:44px;
 }

@@ -5,3 +5,12 @@ database:
     user: root
     password:
     charset: utf8
+
+email:
+    host: smtp.gmail.com
+    port: 465
+    username: youremail@gmail.com
+    password: yourpassword
+    encryption: ssl
+    auth_mode: login
+

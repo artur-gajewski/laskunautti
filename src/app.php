@@ -24,6 +24,15 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => $app['config']['database']
 ));
 
+$app->register(new Silex\Provider\SwiftmailerServiceProvider(), array(
+    'swiftmailer.options' => $app['config']['email'],
+    'swiftmailer.class_path' => __DIR__.'/../vendor/swiftmailer/lib/classes'
+));
+
+$app['mailer'] = $app->share(function ($app) {
+    return new \Swift_Mailer($app['swiftmailer.transport']);
+});
+
 /**
  * Fields that are fetched from the form.
  */
@@ -132,12 +141,34 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
 
     $date->add(new DateInterval('P' . $request->get('billDueDate') . 'D'));
     $databaseValues['bill_duedate'] = $date->format('Y-m-d');
-
     $databaseValues['hash'] = $hash;
 
     $success = $app['db']->insert('invoice', $databaseValues);
-
     $id = $app['db']->lastInsertId();
+
+    $sendEmailToPayer = $request->get('payerSendEmail') ? true : false;
+    $receiverEmail = $request->get('payerEmail');
+
+    $emailSent = false;
+
+    if ($sendEmailToPayer && !empty($receiverEmail)) {
+        $app['mailer']->send($app['mailer']
+            ->createMessage()
+            ->setFrom('info@laskunautti.com')
+            ->setTo($receiverEmail)
+            ->setSubject('Laskunautti lähetti sinulle laskun #' . $databaseValues['bill_number'])
+            ->setBody($app['twig']->render('email.twig',
+                array(
+                    'sender' => $request->get('senderName'),
+                    'receiver' => $request->get('payerName'),
+                    'id' => $id,
+                    'hash' => $hash,
+                )
+            ))
+        );
+
+        $emailSent = true;
+    }
 
     $app['session']->getFlashBag()->add(
         'info',
@@ -147,6 +178,15 @@ $app->post('/tallenna', function (Request $request) use ($app, $formFields) {
             'hash'    => $hash,
         )
     );
+
+    if ($emailSent) {
+        $app['session']->getFlashBag()->add(
+            'email',
+            array(
+                'sent' => $receiverEmail,
+            )
+        );
+    }
 
     $app['monolog']->addInfo('Invoice saved: ' . $id . '/' . $hash);
 

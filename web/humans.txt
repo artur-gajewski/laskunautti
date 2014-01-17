@@ -10,6 +10,8 @@ From: Tuusula, Finland
 Team Fraktio
 www.fraktio.fi
 
+Erkka Rintala for testing barcode with a reader ;)
+
 /* SITE */
 
 Language: Finnish

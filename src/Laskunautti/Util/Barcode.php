@@ -55,7 +55,7 @@ class Barcode
         $rfref = substr($rf, 4, strlen($rf));
         $rfref = str_pad($rfref, 23, '0', STR_PAD_LEFT);
 
-        $code = '5' . $iban . $euros . $cents . $rfref . $responseValues['billDueDateForBarcode'];
+        $code = '4' . $iban . $euros . $cents . $rfref . $responseValues['billDueDateForBarcode'];
 
         /*
         IBAN: 16

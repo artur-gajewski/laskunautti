@@ -1,6 +1,8 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+use Laskunautti\Util\Barcode;
+
 
 $app = require __DIR__.'/bootstrap.php';
 
@@ -87,6 +89,9 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
         }
 
     }
+
+    $barcode = new Barcode();
+    $responseValues['billBarcode'] = $barcode->generate($app['config']['barcode'], $responseValues);
 
     $date = new DateTime();
     $responseValues['billCreatedDate'] = $date->format('Y-m-d');
@@ -210,6 +215,9 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
         $responseValues[$field] = $data[$dbColumn];
     }
 
+    $barcode = new Barcode();
+    $responseValues['billBarcode'] = $barcode->generate($app['config']['barcode'], $responseValues, false);
+
     $total = $responseValues['billTotal'];
     $vat = $responseValues['billVat'];
 
@@ -246,8 +254,8 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
     $date->add(new DateInterval('P28D'));
 
     $formFields = array(
-        'senderIban' => 'FI1234567891234567',
-        'senderSwift' => 'OPOPTUJO',
+        'senderIban' => 'FI73 3131 3001 0000 58',
+        'senderSwift' => 'OKOYFIHH',
         'senderName' => 'Yritys Maijanen',
         'senderEmail' => 'maijanen@yritys.com',
         'senderWww' => 'www.maijanenyritys.com',

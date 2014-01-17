@@ -15,6 +15,17 @@
         .nb {
             border: 0px solid black;
         }
+        #invoice {
+            position: relative;
+            top: -600px;
+        }
+
+        @media print {
+            #invoice {
+                position: relative;
+                top: -1100px;
+            }
+        }
     </style>
 
     <table width="100%" border="0" class="nb">
@@ -144,5 +155,11 @@
             </td>
         </tr>
     </table>
+    {% if sample is defined %}
+        <img id="invoice" src="{{ app.request.basepath }}/img/barcode.png" />
+    {% else %}
+        <img id="invoice" src="data:image/png;base64, {{ billBarcode }}" />
+    {% endif %}
+
 </body>
 </html>

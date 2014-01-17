@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1828b5165564e8db9024a29bb2099b3e",
+    "hash": "0072d423b23909992809fda9f3585f6d",
     "packages": [
         {
             "name": "deralex/yaml-config-service-provider",

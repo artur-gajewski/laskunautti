@@ -1,0 +1,1 @@
+This folder contains image files for barcode images. Make sure it has write privileges!

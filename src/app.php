@@ -118,6 +118,8 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
 
     $responseValues['preview'] = true;
 
+    $responseValues['showBarcode'] = $app['config']['barcode']['show_barcode'];
+
     return $app['twig']->render('invoice.twig', $responseValues);
 })
 ->bind('preview');
@@ -237,6 +239,7 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
 
     $app['monolog']->addInfo('Invoice viewed: ' . $id . '/' . $hash);
 
+    $responseValues['showBarcode'] = $app['config']['barcode']['show_barcode'];
     return $app['twig']->render('invoice.twig', $responseValues);
 })
 ->bind('view');
@@ -298,12 +301,11 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
 
     $formFields['sample'] = true;
 
+    $formFields['showBarcode'] = $app['config']['barcode']['show_barcode'];
+
     return $app['twig']->render('invoice.twig', $formFields);
 })
     ->bind('sample');
-
-
-
 
 /**
  * Finally, return the app.

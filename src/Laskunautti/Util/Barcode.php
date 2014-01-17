@@ -9,6 +9,10 @@ class Barcode
 {
     public function generate($config, $responseValues, $convertDueDate = true)
     {
+        if (!$config['show_barcode']) {
+            return;
+        }
+
         $target          = $config['barcode_target'];
         $barcodeLocation = $config['barcode_location'];
         $convertLocation = $config['convert_location'];
@@ -51,7 +55,7 @@ class Barcode
         $rfref = substr($rf, 4, strlen($rf));
         $rfref = str_pad($rfref, 23, '0', STR_PAD_LEFT);
 
-        $code = '5' . $iban . $euros . $cents . $rfref . $responseValues['billDueDateForBarcode'];
+        $code = '4' . $iban . $euros . $cents . $rfref . $responseValues['billDueDateForBarcode'];
 
         /*
         IBAN: 16

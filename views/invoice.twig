@@ -155,10 +155,12 @@
             </td>
         </tr>
     </table>
-    {% if sample is defined %}
-        <img id="invoice" src="{{ app.request.basepath }}/img/barcode.png" />
-    {% else %}
-        <img id="invoice" src="data:image/png;base64, {{ billBarcode }}" />
+    {% if showBarcode %}
+        {% if sample is defined %}
+            <img id="invoice" src="{{ app.request.basepath }}/img/barcode.png" />
+        {% else %}
+            <img id="invoice" src="data:image/png;base64, {{ billBarcode }}" />
+        {% endif %}
     {% endif %}
 
 </body>

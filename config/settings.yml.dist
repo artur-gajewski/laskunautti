@@ -15,6 +15,7 @@ email:
     auth_mode: login
 
 barcode:
+    show_barcode: true
     barcode_location: /opt/local/bin/barcode
     convert_location: /opt/local/bin/convert
     barcode_target: /Users/arturgajewski/workspace/laskunautti/data

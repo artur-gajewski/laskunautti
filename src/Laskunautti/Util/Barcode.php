@@ -30,6 +30,8 @@ class Barcode
         $reference .= '271500';
         $mod = 98 - ($reference % 97);
         $rf = 'RF' . $mod . $responseValues['billReference'];
+        $rfref = substr($rf, 4, strlen($rf));
+        $rfref = str_pad($rfref, 23, '0', STR_PAD_LEFT);
 
         $iban = substr($responseValues['senderIban'], 2, strlen($responseValues['senderIban']));
         $iban = str_replace(' ', '', $iban);
@@ -51,9 +53,6 @@ class Barcode
 
         $euros = str_pad($euros, 6, '0', STR_PAD_LEFT);
         $cents = str_pad($cents, 2, '0', STR_PAD_LEFT);
-
-        $rfref = substr($rf, 4, strlen($rf));
-        $rfref = str_pad($rfref, 23, '0', STR_PAD_LEFT);
 
         $code = '4' . $iban . $euros . $cents . $rfref . $responseValues['billDueDateForBarcode'];
 
@@ -82,7 +81,7 @@ class Barcode
         */
 
         shell_exec($barcodeLocation . ' -u "mm" -g "180x30" -o ' .$target . '/' . $code . '.eps -b "' . $code . '" -e "128c"');
-        shell_exec($convertLocation . ' ' . $target . '/' . $code . '.eps ' . $target . '/' . $code . '.png');
+        shell_exec($convertLocation . ' ' . $target . '/' . $code . '.eps -crop -80+690 ' . $target . '/' . $code . '.png');
 
         $barcode = file_get_contents($target . '/' . $code . '.png');
 

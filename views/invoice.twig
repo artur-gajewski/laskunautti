@@ -16,15 +16,7 @@
             border: 0px solid black;
         }
         #invoice {
-            position: relative;
-            top: -600px;
-        }
-
-        @media print {
-            #invoice {
-                position: relative;
-                top: -1100px;
-            }
+            margin-top: 50px;
         }
     </style>
 
@@ -157,7 +149,7 @@
     </table>
     {% if showBarcode %}
         {% if sample is defined %}
-            <img id="invoice" src="{{ app.request.basepath }}/img/barcode.png" />
+            <img id="invoice" src="{{ app.request.basepath }}/img/barcode.png?id={{ "now"|date('U') }}" />
         {% else %}
             <img id="invoice" src="data:image/png;base64, {{ billBarcode }}" />
         {% endif %}

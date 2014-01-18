@@ -120,6 +120,9 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
 
     $responseValues['showBarcode'] = $app['config']['barcode']['show_barcode'];
 
+    $billReferenceArray = str_split( $responseValues['billReference'], 4);
+    $responseValues['billReference'] = implode(' ', $billReferenceArray);
+
     return $app['twig']->render('invoice.twig', $responseValues);
 })
 ->bind('preview');
@@ -240,6 +243,10 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
     $app['monolog']->addInfo('Invoice viewed: ' . $id . '/' . $hash);
 
     $responseValues['showBarcode'] = $app['config']['barcode']['show_barcode'];
+
+    $billReferenceArray = str_split( $responseValues['billReference'], 4);
+    $responseValues['billReference'] = implode(' ', $billReferenceArray);
+
     return $app['twig']->render('invoice.twig', $responseValues);
 })
 ->bind('view');
@@ -278,8 +285,8 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
         'billTotal' => 125,
         'billIncludesVat' => true,
         'billVat' => 24,
-        'billNumber' => 123,
-        'billReference' => 1230,
+        'billNumber' => 12345678912,
+        'billReference' => 123456789120,
     );
 
     $total = $formFields['billTotal'];
@@ -302,6 +309,9 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
     $formFields['sample'] = true;
 
     $formFields['showBarcode'] = $app['config']['barcode']['show_barcode'];
+
+    $billReferenceArray = str_split( $formFields['billReference'], 4);
+    $formFields['billReference'] = implode(' ', $billReferenceArray);
 
     return $app['twig']->render('invoice.twig', $formFields);
 })

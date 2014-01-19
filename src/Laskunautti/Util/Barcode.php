@@ -80,7 +80,7 @@ class Barcode
         echo $rf3 . '<br/>';
         */
 
-        shell_exec($barcodeLocation . ' -u "mm" -g "180x30" -o ' .$target . '/' . $code . '.eps -b "' . $code . '" -e "128c"');
+        shell_exec($barcodeLocation . ' -u "mm" -p "A4" -o ' .$target . '/' . $code . '.eps -b "' . $code . '" -e "128c"');
         shell_exec($convertLocation . ' ' . $target . '/' . $code . '.eps -crop -80+690 ' . $target . '/' . $code . '.png');
 
         $barcode = file_get_contents($target . '/' . $code . '.png');

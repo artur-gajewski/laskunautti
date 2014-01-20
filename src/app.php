@@ -1,6 +1,7 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Laskunautti\Util\Barcode;
 
 
@@ -316,6 +317,23 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
     return $app['twig']->render('invoice.twig', $formFields);
 })
     ->bind('sample');
+
+/**
+ * SampleAction
+ */
+$app->get('/reports', function (Request $request) use ($app, $formFields) {
+
+    $app['monolog']->addInfo('Reports loaded.');
+
+    $reportsFile = $app['config']['reports']['file'];
+
+    $reports = shell_exec('sh ' . $reportsFile);
+
+    return new Response('<pre>' . $reports . '</pre>');
+})
+    ->bind('sample');
+
+
 
 /**
  * Finally, return the app.

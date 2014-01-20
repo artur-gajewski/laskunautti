@@ -19,3 +19,6 @@ barcode:
     barcode_location: /opt/local/bin/barcode
     convert_location: /opt/local/bin/convert
     barcode_target: /Users/arturgajewski/workspace/laskunautti/data
+
+reports:
+    file: /Users/arturgajewski/workspace/laskunautti/docs/reports.sh

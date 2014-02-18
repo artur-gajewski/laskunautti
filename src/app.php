@@ -319,7 +319,7 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
     ->bind('sample');
 
 /**
- * SampleAction
+ * ReportsAction
  */
 $app->get('/reports', function (Request $request) use ($app, $formFields) {
 
@@ -331,7 +331,7 @@ $app->get('/reports', function (Request $request) use ($app, $formFields) {
 
     return new Response('<pre>' . $reports . '</pre>');
 })
-    ->bind('sample');
+    ->bind('reports');
 
 
 

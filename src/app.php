@@ -108,7 +108,7 @@ $app->post('/esikatsele', function (Request $request) use ($app, $formFields) {
             $responseValues['billVatAmount'] = ($total / 100) * $vat;
             $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
         } else {
-            $responseValues['billVatAmount'] = ($total * $vat) / ($total + $vat);
+            $responseValues['billVatAmount'] = $total / $vat;
             $responseValues['billTotal'] = $total - $responseValues['billVatAmount'];
             $responseValues['billTotalWithVat'] = $total;
         }
@@ -232,7 +232,7 @@ $app->get('/lasku/{id}/{hash}', function ($id, $hash, Request $request) use ($ap
             $responseValues['billVatAmount'] = ($total / 100) * $vat;
             $responseValues['billTotalWithVat'] = $total + ($total / 100) * $vat;
         } else {
-            $responseValues['billVatAmount'] = ($total * $vat) / ($total + $vat);
+            $responseValues['billVatAmount'] = $total / $vat;
             $responseValues['billTotal'] = $total - $responseValues['billVatAmount'];
             $responseValues['billTotalWithVat'] = $total;
         }
@@ -298,7 +298,7 @@ $app->get('/esimerkki', function (Request $request) use ($app, $formFields) {
             $formFields['billVatAmount'] = ($total / 100) * $vat;
             $formFields['billTotalWithVat'] = $total + ($total / 100) * $vat;
         } else {
-            $formFields['billVatAmount'] = ($total * $vat) / ($total + $vat);
+            $formFields['billVatAmount'] = $total / $vat;
             $formFields['billTotal'] = $total - $formFields['billVatAmount'];
             $formFields['billTotalWithVat'] = $total;
         }
